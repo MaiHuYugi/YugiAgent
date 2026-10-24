@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manage the Google services connected to your Yugi account.">
+  <title>Connections — Yugi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="connections-page">
+  <header class="nav"><div class="nav-inner">
+    <a class="logo logo-word" href="/" aria-label="Yugi home">YUGI</a>
+    <nav class="nav-links"><a href="/">Home</a><a href="/cli">CLI</a></nav>
+    <div class="nav-right"><a href="/auth/google" class="btn-solid btn-small" id="signIn" hidden>Sign in</a><span id="accountName" class="connections-account" hidden></span></div>
+  </div></header>
+  <main class="connections-main">
+    <div class="connections-heading"><div><p class="connections-kicker">YOUR WORKSPACE</p><h1>Connect your tools.</h1><p>Link the Google services you want Yugi to use. Google will show the access requested before you approve.</p></div><span class="google-mark" aria-hidden="true">G</span></div>
+    <div id="connectionsMessage" class="connections-message" role="status" aria-live="polite" hidden></div>
+    <section id="serviceGrid" class="service-grid" aria-label="Google services"></section>
+    <section id="agentLinkSetup" class="agent-link-setup" hidden aria-labelledby="agentLinkHeading">
+      <h2 id="agentLinkHeading">Link your account to the Yugi agent</h2>
+      <p>In your ASI:One conversation, ask the Yugi agent to link your account. Enter its one-time code here to pair it with your Yugi account. Pairing alone does not grant access to Google services.</p>
+      <form id="agentLinkForm" class="agent-link-form">
+        <label for="agentLinkCode">One-time pairing code</label>
+        <input id="agentLinkCode" name="code" type="text" minlength="12" maxlength="20" autocomplete="one-time-code" required>
+        <button class="btn-solid btn-small" type="submit">Link agent</button>
+      </form>
+      <div id="agentLinks" class="agent-links" aria-live="polite"></div>
+    </section>
+    <aside class="connections-privacy"><strong>Your connections stay in your control.</strong><br>You can disconnect a service at any time. Google handles sign-in and permission approval.</aside>
+  </main>
+  <script src="/connections.js" defer></script>
+</body>
+</html>

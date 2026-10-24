@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yugi CLI — Chat with your AI agent</title>
+<meta name="description" content="Talk to Yugi from a full-page terminal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="cli-page">
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html" aria-label="Yugi home">
+      <span class="logo-word" aria-hidden="true">YUGI</span>
+    </a>
+
+    <div class="nav-right">
+      <a href="index.html" class="btn-link">Home</a>
+      <select id="savedChats" class="chat-history" aria-label="Saved conversations">
+        <option value="">Recent chats</option>
+      </select>
+      <button type="button" class="btn-outline btn-small" id="newChat">New chat</button>
+      <div class="profile-menu" id="profileMenu" hidden>
+        <button type="button" class="profile-trigger" id="profileToggle" aria-expanded="false" aria-controls="profileCard">
+          <span class="profile-avatar-wrap">
+            <img id="profilePicture" class="profile-avatar" alt="" hidden>
+            <span id="profileInitials" class="profile-initials">Y</span>
+          </span>
+          <span id="accountName" class="profile-trigger-name">Profile</span>
+          <span class="profile-chevron" aria-hidden="true">⌄</span>
+        </button>
+        <section class="profile-card" id="profileCard" hidden aria-label="Your profile">
+          <strong id="profileName" class="profile-card-name"></strong>
+          <span id="profileEmail" class="profile-card-email"></span>
+          <button type="button" class="btn-link profile-signout" id="signOut">Sign out</button>
+        </section>
+      </div>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        <svg class="icon-moon is-hidden" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="cli-main">
+  <section class="auth-gate" id="authGate" hidden>
+    <h1 class="term-banner">YUGI</h1>
+    <p>Sign in to save and revisit your conversations.</p>
+    <a class="btn-solid" href="/auth/google">Continue with Google</a>
+    <p class="auth-error" id="authError" hidden>Google sign-in did not complete. Please try again.</p>
+  </section>
+  <div class="app-window cli-window">
+    <div class="app-titlebar">
+      <span class="app-dot"></span><span class="app-dot"></span><span class="app-dot"></span>
+      <span class="app-title">yugi — chat</span>
+      <span class="term-status" id="status">ready</span>
+    </div>
+
+    <div class="cli-scroll" id="scroller" role="log" aria-live="polite" aria-busy="false">
+      <div class="cli-thread" id="thread"></div>
+    </div>
+
+    <form class="cli-composer" id="chatForm" autocomplete="off">
+      <div class="cli-input-row">
+        <label class="cli-prompt" for="chatInput">you ›</label>
+        <textarea class="cli-input" id="chatInput" rows="1" placeholder="Ask Yugi anything" spellcheck="false" autocapitalize="sentences"></textarea>
+        <button type="submit" class="btn-solid btn-small cli-send" id="sendBtn">Send</button>
+      </div>
+      <p class="cli-hint">Enter sends. Shift+Enter adds a line. Esc stops a reply.</p>
+    </form>
+  </div>
+</main>
+
+<!-- script.js powers the theme toggle; every other module in it skips itself on this page -->
+<script src="script.js"></script>
+<script src="cli.js"></script>
+</body>
+</html>
